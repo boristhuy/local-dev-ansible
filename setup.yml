@@ -1,0 +1,29 @@
+---
+- name: Setup local development environment
+  hosts: localhost
+  vars:
+    applications:
+      - google-chrome
+
+  tasks:
+    - name: Install libraries using dnf
+      become: yes
+      dnf:
+        state: present
+        skip_broken: yes
+        name:
+          - curl
+          - git
+          - java-1.8.0-openjdk-devel
+          - java-11-openjdk-devel
+          - maven
+          - moby-engine
+          - node
+          - wget
+
+    - name: Make sure Docker is running
+      systemd:
+        name: docker
+        enabled: yes
+        state: started
+
