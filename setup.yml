@@ -1,6 +1,7 @@
 ---
 - name: Setup local development environment
   hosts: localhost
+  become: yes
   roles:
     - dnf
     - flatpak
