@@ -1,25 +1,12 @@
 ---
-- name: Install ansible galaxy general community collection
-  command: ansible-galaxy collection install community.general
-
 - name: Add the flathub flatpak repository remote
   community.general.flatpak_remote:
     name: flathub
     state: present
-    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    flatpakrepo_url: "{{ flathub_repo }}"
 
-- name: Install the Postman flatpak
+- name: "Install application flatpaks"
   community.general.flatpak:
-    name: com.getpostman.Postman
+    name: "{{ item.value }}"
     state: present
-
-- name: Install the Spotify flatpak
-  community.general.flatpak:
-    name: com.spotify.Client
-    state: present
-
-- name: Install the Teams flatpak
-  community.general.flatpak:
-    name: com.microsoft.Teams
-    state: present
-
+  loop: "{{ apps |  dict2items }}"

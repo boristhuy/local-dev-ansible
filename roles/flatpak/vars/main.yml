@@ -1,0 +1,6 @@
+---
+flathub_repo: https://dl.flathub.org/repo/flathub.flatpakrepo
+apps:
+  Postman: com.getpostman.Postman
+  Spoftify: com.spotify.Client
+  Teams: com.microsoft.Teams
