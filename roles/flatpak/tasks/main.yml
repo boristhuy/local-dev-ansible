@@ -2,33 +2,24 @@
 - name: Install ansible galaxy general community collection
   command: ansible-galaxy collection install community.general
 
-- name: Add the flathub flatpak repository remote to the user installation
+- name: Add the flathub flatpak repository remote
   community.general.flatpak_remote:
     name: flathub
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-    method: user
-
-- name: Install the IntelliJ IDEA Ultimate flatpak
-  community.general.flatpak:
-    name: com.jetbrains.IntelliJ-IDEA-Ultimate
-    state: present
-    method: user
 
 - name: Install the Postman flatpak
   community.general.flatpak:
     name: com.getpostman.Postman
     state: present
-    method: user
 
 - name: Install the Spotify flatpak
   community.general.flatpak:
     name: com.spotify.Client
     state: present
-    method: user
 
-- name: Install the Visual Studio Code flatpak
+- name: Install the Teams flatpak
   community.general.flatpak:
-    name: com.visualstudio.code
+    name: com.microsoft.Teams
     state: present
-    method: user
+
