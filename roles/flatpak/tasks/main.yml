@@ -5,7 +5,7 @@
     state: present
     flatpakrepo_url: "{{ flathub_repo }}"
 
-- name: "Install application flatpaks"
+- name: Install application flatpaks
   community.general.flatpak:
     name: "{{ item.value }}"
     state: present
