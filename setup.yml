@@ -1,7 +1,14 @@
 ---
-- name: Setup local development environment
+- name: Setup development environment
   hosts: localhost
   become: yes
   roles:
-    - dnf
-    - flatpak
+    - role: dnf
+      tags:
+        - library
+    - role: flatpak
+      tags:
+        - flatpak
+    - role: intellij
+      tags:
+        - intellij

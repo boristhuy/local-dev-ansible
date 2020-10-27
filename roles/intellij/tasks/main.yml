@@ -1,0 +1,30 @@
+---
+- name: Download Intellij IDEA archive from Jetbrains
+  get_url:
+    url: https://download.jetbrains.com/idea/ideaIU-{{ version }}.tar.gz
+    dest: /opt/idea-{{ version }}.tar.gz
+    checksum: sha256:{{ checksum }}
+  register: download
+
+- debug:
+    msg: "Intellij IDEA archive was successfully downloaded"
+  when: download.dest is defined
+
+- name: Unarchive Intellij IDEA archive
+  unarchive:
+    src: /opt/idea-{{ version }}.tar.gz
+    dest: /opt
+    remote_src: yes
+    list_files: yes
+  register: archive_content
+  when: download.dest is defined
+
+- name: Rename Intellij IDEA installation directory
+  command: mv /opt/{{ archive_content.files[0].split('/')[0] }} /opt/idea
+  when: download.dest is defined
+
+- name: Remove Intellij IDEA archive
+  file:
+    path: /opt/idea-{{ version }}.tar.gz
+    state: absent
+  when: download.dest is defined
