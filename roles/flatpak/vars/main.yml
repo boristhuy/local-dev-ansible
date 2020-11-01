@@ -4,3 +4,4 @@ apps:
   Postman: com.getpostman.Postman
   Spoftify: com.spotify.Client
   Teams: com.microsoft.Teams
+  DBeaver: io.dbeaver.DBeaverCommunity
